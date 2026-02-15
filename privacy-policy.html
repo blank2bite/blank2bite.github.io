@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blank2Bite - Privacy Policy</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        h1 { color: #1B2838; }
+        h2 { color: #2c5282; margin-top: 2em; }
+        h3 { color: #4a5568; }
+        .last-updated { color: #718096; font-style: italic; }
+        table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 8px 12px; text-align: left; }
+        th { background-color: #f7fafc; }
+    </style>
+</head>
+<body>
+
+<h1>Blank2Bite - Privacy Policy</h1>
+<p class="last-updated">Last updated: February 15, 2026</p>
+
+<h2>1. Introduction</h2>
+<p>Blank2Bite ("we", "our", "the app") is a fishing journal app that helps anglers record their catches with photos, AI-powered fish identification, weather data, and GPS location. This privacy policy explains how we collect, use, and protect your data.</p>
+
+<h2>2. Data We Collect</h2>
+
+<h3>2.1 Account Information</h3>
+<p>When you sign in, we collect:</p>
+<ul>
+    <li><strong>Google Sign-In:</strong> your name and email address (provided by Google)</li>
+    <li><strong>Email/Password:</strong> your email address and an encrypted password</li>
+</ul>
+<p>Authentication is handled by Google Firebase Authentication.</p>
+
+<h3>2.2 Fishing Catch Data</h3>
+<p>When you record a catch, the following data is stored:</p>
+<ul>
+    <li>Fish species (identified by AI or entered manually)</li>
+    <li>Bait/lure type (identified by AI or entered manually)</li>
+    <li>Estimated fish size</li>
+    <li>Date and time of the catch</li>
+    <li>GPS coordinates (from photo EXIF data or device location)</li>
+    <li>Weather conditions at the time of catch</li>
+    <li>Moon phase</li>
+    <li>Marine conditions (wave height, sea temperature)</li>
+</ul>
+
+<h3>2.3 Photos</h3>
+<p>The app accesses your device camera and photo gallery to capture or select photos of your catches. Photos are:</p>
+<ul>
+    <li><strong>Stored locally</strong> on your device only</li>
+    <li><strong>Not uploaded to our servers</strong> for storage</li>
+    <li>Temporarily sent (compressed) to our backend server solely for AI fish identification, and immediately discarded after processing</li>
+</ul>
+
+<h3>2.4 Location Data</h3>
+<p>The app collects GPS coordinates to:</p>
+<ul>
+    <li>Record where you caught the fish</li>
+    <li>Retrieve weather and marine conditions for that location</li>
+    <li>Display catch locations on a map</li>
+</ul>
+<p>Location is obtained from photo EXIF metadata or from your device's GPS sensor (with your permission).</p>
+
+<h2>3. How We Use Your Data</h2>
+
+<table>
+    <tr>
+        <th>Data</th>
+        <th>Purpose</th>
+        <th>Sent To</th>
+    </tr>
+    <tr>
+        <td>Photos (compressed)</td>
+        <td>AI fish and bait identification</td>
+        <td>Our backend server (Google Gemini AI)</td>
+    </tr>
+    <tr>
+        <td>GPS coordinates + date</td>
+        <td>Weather and marine conditions lookup</td>
+        <td>Open-Meteo API (open source, no API key)</td>
+    </tr>
+    <tr>
+        <td>Date</td>
+        <td>Moon phase calculation</td>
+        <td>Calculated on our server</td>
+    </tr>
+    <tr>
+        <td>Catch records (text data)</td>
+        <td>Cloud sync across your devices</td>
+        <td>Google Firebase Firestore</td>
+    </tr>
+    <tr>
+        <td>Account info</td>
+        <td>Authentication and data ownership</td>
+        <td>Google Firebase Authentication</td>
+    </tr>
+</table>
+
+<h2>4. Data Storage and Security</h2>
+
+<h3>4.1 Local Storage</h3>
+<p>All catch data and photos are stored locally on your device in an SQLite database. The app works fully offline.</p>
+
+<h3>4.2 Cloud Storage</h3>
+<p>Catch records (text data only, not photos) are synced to Google Firebase Firestore for backup and multi-device access. Data is stored in your personal account and is not accessible by other users. Firebase security rules ensure that only you can read and write your own data.</p>
+
+<h3>4.3 Backend Server</h3>
+<p>Our backend server (hosted on Railway) acts as a proxy for external APIs. It does not store any user data permanently. Photos sent for AI identification are processed in memory and immediately discarded.</p>
+
+<h2>5. Third-Party Services</h2>
+<p>The app uses the following third-party services:</p>
+<ul>
+    <li><strong>Google Firebase</strong> (Authentication and Firestore) - <a href="https://firebase.google.com/support/privacy">Privacy Policy</a></li>
+    <li><strong>Google Gemini AI</strong> (fish identification via our backend) - <a href="https://ai.google.dev/terms">Terms of Service</a></li>
+    <li><strong>Open-Meteo</strong> (weather data, open source) - <a href="https://open-meteo.com/en/terms">Terms</a></li>
+    <li><strong>Google Play Billing</strong> (in-app subscriptions) - <a href="https://policies.google.com/privacy">Privacy Policy</a></li>
+</ul>
+
+<h2>6. Permissions</h2>
+<p>The app requests the following Android permissions:</p>
+<ul>
+    <li><strong>Camera:</strong> to take photos of your catches</li>
+    <li><strong>Photos/Media:</strong> to select photos from your gallery</li>
+    <li><strong>Location:</strong> to record catch location and retrieve weather data</li>
+    <li><strong>Internet:</strong> for AI identification, weather data, cloud sync, and authentication</li>
+</ul>
+<p>All permissions are optional. The app will work with reduced functionality if permissions are denied.</p>
+
+<h2>7. Data Retention and Deletion</h2>
+<ul>
+    <li>Your data is retained as long as you have an active account</li>
+    <li>You can delete individual catches from within the app at any time</li>
+    <li>To delete all your data, you can contact us at <a href="mailto:blank2bite@gmail.com">blank2bite@gmail.com</a></li>
+    <li>Deleted data is removed from both local storage and cloud sync</li>
+</ul>
+
+<h2>8. Children's Privacy</h2>
+<p>The app is not directed at children under 13. We do not knowingly collect personal information from children under 13.</p>
+
+<h2>9. Changes to This Policy</h2>
+<p>We may update this privacy policy from time to time. Changes will be posted on this page with an updated date.</p>
+
+<h2>10. Contact</h2>
+<p>If you have questions about this privacy policy, please contact us at:</p>
+<p><a href="mailto:blank2bite@gmail.com">blank2bite@gmail.com</a></p>
+
+</body>
+</html>
