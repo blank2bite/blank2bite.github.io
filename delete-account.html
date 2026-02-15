@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Account - Blank2Bite</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px;
+            line-height: 1.75;
+            color: #2d3748;
+            background-color: #f8fafc;
+        }
+        .header {
+            text-align: center;
+            padding: 40px 0 32px;
+            border-bottom: 2px solid #e2e8f0;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            font-size: 28px;
+            color: #1B2838;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+        .header .subtitle {
+            font-size: 14px;
+            color: #718096;
+        }
+        h2 {
+            font-size: 20px;
+            color: #1B2838;
+            margin: 40px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        p { margin-bottom: 16px; color: #4a5568; }
+        ul, ol {
+            margin: 12px 0 20px 24px;
+            color: #4a5568;
+        }
+        li { margin-bottom: 8px; }
+        strong { color: #2d3748; }
+        a { color: #2b6cb0; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        .highlight {
+            background: #fff5f5;
+            border-left: 4px solid #e53e3e;
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #c53030;
+        }
+        .steps {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+        .steps ol { margin-left: 20px; }
+        .steps li {
+            margin-bottom: 16px;
+            padding-left: 8px;
+        }
+        .contact-card {
+            background: #1B2838;
+            color: #ffffff;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            margin: 24px 0;
+        }
+        .contact-card a { color: #90cdf4; font-size: 18px; }
+        .contact-card p { color: #cbd5e0; }
+        .btn {
+            display: inline-block;
+            background: #e53e3e;
+            color: #ffffff;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 8px;
+        }
+        .btn:hover { background: #c53030; text-decoration: none; }
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 24px;
+            border-top: 2px solid #e2e8f0;
+            color: #a0aec0;
+            font-size: 13px;
+        }
+        @media (max-width: 600px) {
+            body { padding: 20px 16px; }
+            .header h1 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Account Deletion Request</h1>
+    <p class="subtitle">Blank2Bite - Fishing Journal App</p>
+</div>
+
+<h2>How to Delete Your Account</h2>
+<p>If you wish to delete your Blank2Bite account and all associated data, please follow the steps below.</p>
+
+<div class="steps">
+<h3 style="margin-bottom: 16px; color: #1B2838;">Steps to request account deletion:</h3>
+<ol>
+    <li>Send an email to <strong>blank2bite@gmail.com</strong> from the email address associated with your account</li>
+    <li>Use the subject line: <strong>"Account Deletion Request"</strong></li>
+    <li>In the email body, confirm that you want to permanently delete your account and all associated data</li>
+    <li>We will process your request and confirm the deletion within <strong>7 business days</strong></li>
+</ol>
+</div>
+
+<div style="text-align: center; margin: 32px 0;">
+    <a href="mailto:blank2bite@gmail.com?subject=Account%20Deletion%20Request&body=I%20would%20like%20to%20permanently%20delete%20my%20Blank2Bite%20account%20and%20all%20associated%20data." class="btn">Request Account Deletion</a>
+</div>
+
+<h2>What Data Will Be Deleted</h2>
+<div class="card">
+<p>Upon processing your deletion request, the following data will be <strong>permanently removed</strong>:</p>
+<ul>
+    <li><strong>Account information</strong> &mdash; Your authentication credentials and email address</li>
+    <li><strong>Catch records</strong> &mdash; All fishing catch data stored in the cloud (species, location, weather, dates)</li>
+    <li><strong>Cloud-synced data</strong> &mdash; All records stored in Google Cloud Firestore</li>
+</ul>
+</div>
+
+<div class="highlight">
+    <strong>Please note:</strong> Photographs are stored exclusively on your device and are not part of cloud storage. Deleting your account does not remove photos from your device. You can delete them manually from your device's gallery.
+</div>
+
+<h2>Delete Individual Records</h2>
+<p>If you only want to delete specific catch records without closing your account, you can do so directly within the App:</p>
+<div class="card">
+<ol>
+    <li>Open the Blank2Bite app</li>
+    <li>Go to the <strong>History</strong> tab</li>
+    <li>Swipe or tap the delete icon on the catch you want to remove</li>
+    <li>Confirm the deletion</li>
+</ol>
+<p>Deleted records are permanently removed from both your device and cloud storage.</p>
+</div>
+
+<h2>Contact Us</h2>
+<p>If you have any questions about the deletion process, please contact us:</p>
+<div class="contact-card">
+    <p style="font-size: 16px; color: #ffffff; margin-bottom: 8px;"><strong>Blank2Bite</strong></p>
+    <p><a href="mailto:blank2bite@gmail.com">blank2bite@gmail.com</a></p>
+</div>
+
+<div class="footer">
+    <p>&copy; 2026 Blank2Bite. All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a></p>
+</div>
+
+</body>
+</html>
