@@ -3,104 +3,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blank2Bite - Privacy Policy</title>
+    <title>Privacy Policy - Blank2Bite</title>
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            max-width: 800px;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 20px;
-            line-height: 1.6;
-            color: #333;
+            padding: 40px 24px;
+            line-height: 1.75;
+            color: #2d3748;
+            background-color: #f8fafc;
         }
-        h1 { color: #1B2838; }
-        h2 { color: #2c5282; margin-top: 2em; }
-        h3 { color: #4a5568; }
-        .last-updated { color: #718096; font-style: italic; }
-        table { border-collapse: collapse; width: 100%; margin: 1em 0; }
-        th, td { border: 1px solid #e2e8f0; padding: 8px 12px; text-align: left; }
-        th { background-color: #f7fafc; }
+        .header {
+            text-align: center;
+            padding: 40px 0 32px;
+            border-bottom: 2px solid #e2e8f0;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            font-size: 28px;
+            color: #1B2838;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+        .header .subtitle {
+            font-size: 14px;
+            color: #718096;
+        }
+        .effective-date {
+            display: inline-block;
+            background: #edf2f7;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #4a5568;
+            margin-top: 12px;
+        }
+        h2 {
+            font-size: 20px;
+            color: #1B2838;
+            margin: 40px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        h3 {
+            font-size: 16px;
+            color: #2d3748;
+            margin: 24px 0 12px;
+        }
+        p { margin-bottom: 16px; color: #4a5568; }
+        ul {
+            margin: 12px 0 20px 24px;
+            color: #4a5568;
+        }
+        li { margin-bottom: 8px; }
+        strong { color: #2d3748; }
+        a { color: #2b6cb0; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+        th {
+            background-color: #1B2838;
+            color: #ffffff;
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+        }
+        th:first-child { border-radius: 8px 0 0 0; }
+        th:last-child { border-radius: 0 8px 0 0; }
+        td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 16px;
+            color: #4a5568;
+        }
+        tr:nth-child(even) td { background-color: #f7fafc; }
+        .highlight {
+            background: #ebf8ff;
+            border-left: 4px solid #2b6cb0;
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #2c5282;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 24px;
+            border-top: 2px solid #e2e8f0;
+            color: #a0aec0;
+            font-size: 13px;
+        }
+        .contact-card {
+            background: #1B2838;
+            color: #ffffff;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            margin: 24px 0;
+        }
+        .contact-card a { color: #90cdf4; }
+        .contact-card p { color: #cbd5e0; }
+        .badge {
+            display: inline-block;
+            background: #c6f6d5;
+            color: #276749;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        @media (max-width: 600px) {
+            body { padding: 20px 16px; }
+            .header h1 { font-size: 22px; }
+            h2 { font-size: 18px; }
+            table { font-size: 13px; }
+            th, td { padding: 8px 10px; }
+        }
     </style>
 </head>
 <body>
 
-<h1>Blank2Bite - Privacy Policy</h1>
-<p class="last-updated">Last updated: February 15, 2026</p>
+<div class="header">
+    <h1>Privacy Policy</h1>
+    <p class="subtitle">Blank2Bite - Fishing Journal App</p>
+    <span class="effective-date">Effective Date: February 15, 2026</span>
+</div>
 
 <h2>1. Introduction</h2>
-<p>Blank2Bite ("we", "our", "the app") is a fishing journal app that helps anglers record their catches with photos, AI-powered fish identification, weather data, and GPS location. This privacy policy explains how we collect, use, and protect your data.</p>
+<p>This Privacy Policy describes how Blank2Bite ("we", "us", "our") collects, uses, stores, and protects information when you use our mobile application (the "App"). Blank2Bite is a fishing journal application that enables users to record catches with photographs, AI-powered species identification, meteorological data, and geographic location tracking.</p>
+<p>By using the App, you agree to the collection and use of information in accordance with this policy. We are committed to protecting your privacy and handling your data transparently.</p>
 
-<h2>2. Data We Collect</h2>
+<h2>2. Information We Collect</h2>
 
+<div class="card">
 <h3>2.1 Account Information</h3>
-<p>When you sign in, we collect:</p>
+<p>To provide our services, we require user authentication. We collect the following information depending on your sign-in method:</p>
 <ul>
-    <li><strong>Google Sign-In:</strong> your email address (provided by Google)</li>
-    <li><strong>Email/Password:</strong> your email address and an encrypted password</li>
+    <li><strong>Google Sign-In:</strong> email address associated with your Google account</li>
+    <li><strong>Email/Password Authentication:</strong> email address and securely encrypted password</li>
 </ul>
-<p>Authentication is handled by Google Firebase Authentication.</p>
+<p>All authentication is processed through Google Firebase Authentication, a secure, industry-standard authentication service.</p>
+</div>
 
-<h3>2.2 Fishing Catch Data</h3>
-<p>When you record a catch, the following data is stored:</p>
+<div class="card">
+<h3>2.2 Catch Records</h3>
+<p>When you log a fishing catch, the App records the following information:</p>
 <ul>
-    <li>Fish species (identified by AI or entered manually)</li>
-    <li>Bait/lure type (identified by AI or entered manually)</li>
+    <li>Fish species and bait/lure type (identified via AI or entered manually by the user)</li>
     <li>Estimated fish size</li>
-    <li>Date and time of the catch</li>
-    <li>GPS coordinates (from photo EXIF data or device location)</li>
-    <li>Weather conditions at the time of catch</li>
-    <li>Moon phase</li>
-    <li>Marine conditions (wave height, sea temperature)</li>
+    <li>Date and time of capture</li>
+    <li>Geographic coordinates (derived from photo EXIF metadata or device GPS)</li>
+    <li>Meteorological conditions at the time and location of capture</li>
+    <li>Lunar phase and illumination data</li>
+    <li>Marine conditions, including wave height and sea surface temperature</li>
 </ul>
+</div>
 
-<h3>2.3 Photos</h3>
-<p>The app accesses your device camera and photo gallery to capture or select photos of your catches. Photos are:</p>
-<ul>
-    <li><strong>Stored locally</strong> on your device only</li>
-    <li><strong>Not uploaded to our servers</strong> for storage</li>
-    <li>Temporarily sent (compressed) to our backend server solely for AI fish identification, and immediately discarded after processing</li>
-</ul>
+<div class="card">
+<h3>2.3 Photographs</h3>
+<p>The App requests access to your device camera and photo library to capture or select images of your catches.</p>
+<div class="highlight">
+    <strong>Important:</strong> Photographs are stored exclusively on your device. They are never uploaded to our servers for permanent storage. Images are temporarily transmitted in compressed form to our backend server solely for AI-powered species identification and are immediately discarded upon completion of the analysis.
+</div>
+</div>
 
+<div class="card">
 <h3>2.4 Location Data</h3>
-<p>The app collects GPS coordinates to:</p>
+<p>With your explicit permission, the App collects geographic coordinates for the following purposes:</p>
 <ul>
-    <li>Record where you caught the fish</li>
-    <li>Retrieve weather and marine conditions for that location</li>
-    <li>Display catch locations on a map</li>
+    <li>Recording the precise location of each catch</li>
+    <li>Retrieving historical weather and marine conditions for that location</li>
+    <li>Displaying catch locations on an interactive map within the App</li>
 </ul>
-<p>Location is obtained from photo EXIF metadata or from your device's GPS sensor (with your permission).</p>
+<p>Location data is obtained either from EXIF metadata embedded in photographs or from your device's GPS sensor.</p>
+</div>
 
-<h2>3. How We Use Your Data</h2>
+<h2>3. How We Use Your Information</h2>
+<p>We process your data exclusively for the purposes outlined below. We do not sell, rent, or share your personal information with third parties for marketing purposes.</p>
 
 <table>
     <tr>
-        <th>Data</th>
+        <th>Data Type</th>
         <th>Purpose</th>
-        <th>Sent To</th>
+        <th>Processed By</th>
     </tr>
     <tr>
-        <td>Photos (compressed)</td>
-        <td>AI fish and bait identification</td>
-        <td>Our backend server (Google Gemini AI)</td>
+        <td>Photographs <span class="badge">Temporary</span></td>
+        <td>AI-powered fish and bait identification</td>
+        <td>Google Gemini AI (via our secure backend)</td>
     </tr>
     <tr>
-        <td>GPS coordinates + date</td>
-        <td>Weather and marine conditions lookup</td>
-        <td>Open-Meteo API (open source, no API key)</td>
+        <td>Geographic coordinates &amp; date</td>
+        <td>Historical weather and marine data retrieval</td>
+        <td>Open-Meteo API</td>
     </tr>
     <tr>
-        <td>Date</td>
-        <td>Moon phase calculation</td>
-        <td>Calculated on our server</td>
+        <td>Date of capture</td>
+        <td>Lunar phase calculation</td>
+        <td>Our backend server</td>
     </tr>
     <tr>
-        <td>Catch records (text data)</td>
-        <td>Cloud sync across your devices</td>
-        <td>Google Firebase Firestore</td>
+        <td>Catch records (text only)</td>
+        <td>Cloud synchronization across your devices</td>
+        <td>Google Cloud Firestore</td>
     </tr>
     <tr>
-        <td>Account info</td>
-        <td>Authentication and data ownership</td>
+        <td>Account credentials</td>
+        <td>User authentication and data access control</td>
         <td>Google Firebase Authentication</td>
     </tr>
 </table>
@@ -108,50 +232,62 @@
 <h2>4. Data Storage and Security</h2>
 
 <h3>4.1 Local Storage</h3>
-<p>All catch data and photos are stored locally on your device in an SQLite database. The app works fully offline.</p>
+<p>All catch data and photographs are stored locally on your device using an encrypted SQLite database. The App is designed to function fully offline without an internet connection.</p>
 
-<h3>4.2 Cloud Storage</h3>
-<p>Catch records (text data only, not photos) are synced to Google Firebase Firestore for backup and multi-device access. Data is stored in your personal account and is not accessible by other users. Firebase security rules ensure that only you can read and write your own data.</p>
+<h3>4.2 Cloud Synchronization</h3>
+<p>Catch records (textual data only; photographs are excluded) are synchronized to Google Cloud Firestore to enable backup and multi-device access. Your data is stored within your personal, isolated account. Firebase security rules enforce strict access control, ensuring that only you can read and modify your own data.</p>
 
-<h3>4.3 Backend Server</h3>
-<p>Our backend server (hosted on Railway) acts as a proxy for external APIs. It does not store any user data permanently. Photos sent for AI identification are processed in memory and immediately discarded.</p>
+<h3>4.3 Backend Infrastructure</h3>
+<p>Our backend server functions exclusively as a secure proxy for third-party API services. No user data is persistently stored on our servers. Photographs transmitted for AI analysis are processed entirely in memory and are purged immediately upon completion.</p>
 
 <h2>5. Third-Party Services</h2>
-<p>The app uses the following third-party services:</p>
+<p>The App integrates with the following third-party services, each governed by their respective privacy policies:</p>
+<div class="card">
 <ul>
-    <li><strong>Google Firebase</strong> (Authentication and Firestore) - <a href="https://firebase.google.com/support/privacy">Privacy Policy</a></li>
-    <li><strong>Google Gemini AI</strong> (fish identification via our backend) - <a href="https://ai.google.dev/terms">Terms of Service</a></li>
-    <li><strong>Open-Meteo</strong> (weather data, open source) - <a href="https://open-meteo.com/en/terms">Terms</a></li>
-    <li><strong>Google Play Billing</strong> (in-app subscriptions) - <a href="https://policies.google.com/privacy">Privacy Policy</a></li>
+    <li><strong>Google Firebase</strong> &mdash; Authentication &amp; Cloud Firestore &mdash; <a href="https://firebase.google.com/support/privacy" target="_blank">Privacy Policy</a></li>
+    <li><strong>Google Gemini AI</strong> &mdash; Fish species identification &mdash; <a href="https://ai.google.dev/terms" target="_blank">Terms of Service</a></li>
+    <li><strong>Open-Meteo</strong> &mdash; Meteorological data (open-source) &mdash; <a href="https://open-meteo.com/en/terms" target="_blank">Terms of Use</a></li>
+    <li><strong>Google Play Billing</strong> &mdash; In-app subscription management &mdash; <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a></li>
 </ul>
+</div>
 
-<h2>6. Permissions</h2>
-<p>The app requests the following Android permissions:</p>
+<h2>6. Device Permissions</h2>
+<p>The App may request the following device permissions to deliver its core functionality:</p>
+<div class="card">
 <ul>
-    <li><strong>Camera:</strong> to take photos of your catches</li>
-    <li><strong>Photos/Media:</strong> to select photos from your gallery</li>
-    <li><strong>Location:</strong> to record catch location and retrieve weather data</li>
-    <li><strong>Internet:</strong> for AI identification, weather data, cloud sync, and authentication</li>
+    <li><strong>Camera</strong> &mdash; Required to photograph your catches directly within the App</li>
+    <li><strong>Photos &amp; Media</strong> &mdash; Required to select existing images from your device gallery</li>
+    <li><strong>Location</strong> &mdash; Required to geotag catches and retrieve location-based weather data</li>
+    <li><strong>Internet</strong> &mdash; Required for AI identification, weather data retrieval, cloud synchronization, and user authentication</li>
 </ul>
-<p>All permissions are optional. The app will work with reduced functionality if permissions are denied.</p>
+</div>
+<p>All permissions are requested at runtime and may be individually granted or denied. The App will continue to operate with reduced functionality if specific permissions are not granted.</p>
 
 <h2>7. Data Retention and Deletion</h2>
+<p>We retain your data only for as long as necessary to provide our services:</p>
 <ul>
-    <li>Your data is retained as long as you have an active account</li>
-    <li>You can delete individual catches from within the app at any time</li>
-    <li>To delete all your data, you can contact us at <a href="mailto:blank2bite@gmail.com">blank2bite@gmail.com</a></li>
-    <li>Deleted data is removed from both local storage and cloud sync</li>
+    <li>Your data is retained for the duration of your active account</li>
+    <li>You may delete individual catch records at any time from within the App</li>
+    <li>Deleted records are permanently removed from both local storage and cloud synchronization</li>
+    <li>To request complete deletion of all account data, please contact us at the address provided below</li>
 </ul>
 
 <h2>8. Children's Privacy</h2>
-<p>The app is not directed at children under 13. We do not knowingly collect personal information from children under 13.</p>
+<p>The App is not directed at individuals under the age of 13. We do not knowingly collect or solicit personal information from children under 13. If we become aware that we have inadvertently collected such information, we will take immediate steps to delete it.</p>
 
 <h2>9. Changes to This Policy</h2>
-<p>We may update this privacy policy from time to time. Changes will be posted on this page with an updated date.</p>
+<p>We reserve the right to update this Privacy Policy at any time. Any modifications will be reflected on this page with a revised effective date. We encourage you to review this policy periodically. Continued use of the App following any changes constitutes your acceptance of the updated policy.</p>
 
-<h2>10. Contact</h2>
-<p>If you have questions about this privacy policy, please contact us at:</p>
-<p><a href="mailto:blank2bite@gmail.com">blank2bite@gmail.com</a></p>
+<h2>10. Contact Us</h2>
+<p>If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please do not hesitate to contact us:</p>
+<div class="contact-card">
+    <p style="font-size: 16px; color: #ffffff; margin-bottom: 8px;"><strong>Blank2Bite</strong></p>
+    <p><a href="mailto:blank2bite@gmail.com">blank2bite@gmail.com</a></p>
+</div>
+
+<div class="footer">
+    <p>&copy; 2026 Blank2Bite. All rights reserved.</p>
+</div>
 
 </body>
 </html>
