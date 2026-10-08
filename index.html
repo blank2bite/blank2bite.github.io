@@ -242,8 +242,8 @@
       <p class="hero-note" data-i18n="hero_note">10 catture gratuite · Nessuna pubblicità</p>
     </div>
     <div class="phones" aria-hidden="true">
-      <div class="phone p1"><img src="assets/screens/screen-1.jpg" alt=""></div>
-      <div class="phone p2"><img src="assets/screens/screen-3.jpg" alt=""></div>
+      <div class="phone p1"><img data-shot="1" src="assets/screens/it-1.jpg" alt=""></div>
+      <div class="phone p2"><img data-shot="3" src="assets/screens/it-3.jpg" alt=""></div>
     </div>
   </div>
 </div>
@@ -297,20 +297,20 @@
     </div>
     <div class="screens">
       <figure>
-        <div class="phone"><img src="assets/screens/screen-1.jpg" alt="" loading="lazy"></div>
-        <figcaption><strong data-i18n="s1_t">Nuova cattura</strong><span data-i18n="s1_d">AI, meteo e luna</span></figcaption>
+        <div class="phone"><img data-shot="1" src="assets/screens/it-1.jpg" alt="" loading="lazy"></div>
+        <figcaption><strong data-i18n="s1_t">Dettaglio cattura</strong><span data-i18n="s1_d">Specie, esca e meteo</span></figcaption>
       </figure>
       <figure>
-        <div class="phone"><img src="assets/screens/screen-2.jpg" alt="" loading="lazy"></div>
-        <figcaption><strong data-i18n="s2_t">Storico</strong><span data-i18n="s2_d">Le catture mese per mese</span></figcaption>
+        <div class="phone"><img data-shot="2" src="assets/screens/it-2.jpg" alt="" loading="lazy"></div>
+        <figcaption><strong data-i18n="s2_t">Luna e mare</strong><span data-i18n="s2_d">Condizioni e posizione</span></figcaption>
       </figure>
       <figure>
-        <div class="phone"><img src="assets/screens/screen-3.jpg" alt="" loading="lazy"></div>
+        <div class="phone"><img data-shot="3" src="assets/screens/it-3.jpg" alt="" loading="lazy"></div>
         <figcaption><strong data-i18n="s3_t">Statistiche</strong><span data-i18n="s3_d">I tuoi hotspot sulla mappa</span></figcaption>
       </figure>
       <figure>
-        <div class="phone"><img src="assets/screens/screen-4.jpg" alt="" loading="lazy"></div>
-        <figcaption><strong data-i18n="s4_t">Analisi per esca</strong><span data-i18n="s4_d">Specie, luna e orari migliori</span></figcaption>
+        <div class="phone"><img data-shot="4" src="assets/screens/it-4.jpg" alt="" loading="lazy"></div>
+        <figcaption><strong data-i18n="s4_t">Scheda specie</strong><span data-i18n="s4_d">Esche, luna e orari migliori</span></figcaption>
       </figure>
     </div>
   </div>
@@ -389,10 +389,10 @@
       f5_t: "Import old photos", f5_d: "Already have a photo archive? Import many photos at once: date, location, weather and species are rebuilt automatically.",
       f6_t: "Private & synced", f6_d: "Works offline and syncs your data across devices. Photos stay on your phone. No ads, no data selling.",
       scr_title: "Simple to use", scr_lead: "Four screens, everything at your thumb.",
-      s1_t: "New catch", s1_d: "AI, weather and moon",
-      s2_t: "History", s2_d: "Your catches month by month",
+      s1_t: "Catch details", s1_d: "Species, bait and weather",
+      s2_t: "Moon & sea", s2_d: "Conditions and location",
       s3_t: "Statistics", s3_d: "Your hotspots on the map",
-      s4_t: "Lure analysis", s4_d: "Best species, moon and times",
+      s4_t: "Species insights", s4_d: "Best baits, moon and times",
       pr_title: "Try it free, then decide", pr_lead: "Your first 10 catches are free. For unlimited logging there's Premium.",
       p1_n: "Free", p1_p: "10 catches",
       p2_n: "Monthly", p2_p: "per month",
@@ -415,6 +415,7 @@
     document.title = t._title;
     document.querySelectorAll("[data-i18n]").forEach(el => el.textContent = t[el.dataset.i18n]);
     document.querySelectorAll("[data-i18n-html]").forEach(el => el.innerHTML = t[el.dataset.i18nHtml]);
+    document.querySelectorAll("img[data-shot]").forEach(img => img.src = `assets/screens/${lang}-${img.dataset.shot}.jpg`);
     document.querySelectorAll(".lang button").forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
     try { localStorage.setItem("lang", lang); } catch (e) {}
   }
