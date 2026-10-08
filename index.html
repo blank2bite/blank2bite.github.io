@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blank2Bite – Diario di pesca con AI</title>
+<meta name="description" content="Blank2Bite è il diario di pesca con intelligenza artificiale: registra le catture con foto, GPS, meteo, luna e dati marini. Per Android e iOS.">
+<meta name="theme-color" content="#1B2838">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:title" content="Blank2Bite – Diario di pesca con AI">
+<meta property="og:description" content="Registra ogni cattura con foto, GPS, meteo e luna. L'AI riconosce la specie per te.">
+<meta property="og:image" content="https://blank2bite.github.io/assets/icon-512.png">
+<meta property="og:type" content="website">
+<style>
+  :root {
+    --navy: #1B2838;
+    --navy-2: #22344a;
+    --slate: #5B6E9A;
+    --amber: #F2B36B;
+    --amber-2: #E89A4A;
+    --teal: #6FA3A0;
+    --bg: #F8F9FF;
+    --surface: #FFFFFF;
+    --text: #1B2838;
+    --muted: #5A6475;
+    --line: #E3E7F0;
+    --radius: 20px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121C28;
+      --surface: #1B2838;
+      --text: #EEF2F8;
+      --muted: #A7B1C2;
+      --line: #2B3B50;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(27, 40, 56, 0.85);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-weight: 700; font-size: 18px; }
+  .brand img { width: 34px; height: 34px; border-radius: 9px; }
+  .nav-links { display: flex; align-items: center; gap: 22px; }
+  .nav-links a { color: #C9D3E3; text-decoration: none; font-size: 15px; }
+  .nav-links a:hover { color: #fff; }
+  .lang {
+    display: flex; border: 1px solid rgba(255,255,255,0.18); border-radius: 999px; overflow: hidden;
+  }
+  .lang button {
+    background: none; border: 0; color: #C9D3E3; font: inherit; font-size: 13px; font-weight: 600;
+    padding: 5px 11px; cursor: pointer;
+  }
+  .lang button.active { background: var(--amber); color: var(--navy); }
+
+  /* Hero */
+  .hero {
+    background:
+      radial-gradient(900px 500px at 85% 10%, rgba(242,179,107,0.18), transparent 60%),
+      radial-gradient(700px 500px at 0% 100%, rgba(91,110,154,0.35), transparent 60%),
+      var(--navy);
+    color: #fff;
+    overflow: hidden;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center;
+    padding-top: 80px; padding-bottom: 90px;
+  }
+  .tagline {
+    display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: .04em;
+    color: var(--amber); background: rgba(242,179,107,0.12); border: 1px solid rgba(242,179,107,0.3);
+    padding: 5px 12px; border-radius: 999px; margin-bottom: 20px;
+  }
+  .hero h1 { font-size: clamp(36px, 5.5vw, 58px); line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 20px; }
+  .hero h1 span { color: var(--amber); }
+  .hero p.lead { font-size: 19px; color: #C9D3E3; max-width: 520px; margin-bottom: 32px; }
+  .stores { display: flex; flex-wrap: wrap; gap: 12px; }
+  .store {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: #000; color: #fff; text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.25); border-radius: 14px; padding: 10px 18px 10px 14px;
+    min-width: 190px; transition: transform .15s ease, border-color .15s ease;
+  }
+  .store:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.5); }
+  .store svg { width: 26px; height: 26px; flex-shrink: 0; }
+  .store small { display: block; font-size: 11px; opacity: .75; line-height: 1.2; }
+  .store strong { display: block; font-size: 18px; line-height: 1.2; font-weight: 600; }
+  .store.soon { opacity: .6; cursor: default; }
+  .store.soon:hover { transform: none; border-color: rgba(255,255,255,0.25); }
+  .hero-note { margin-top: 18px; font-size: 14px; color: #93A0B5; }
+
+  .phones { position: relative; height: 560px; }
+  .phone {
+    position: absolute; width: 250px; border-radius: 38px; padding: 10px;
+    background: #0E1620; box-shadow: 0 30px 60px rgba(0,0,0,0.45), inset 0 0 0 2px #2B3B50;
+  }
+  .phone img { border-radius: 29px; }
+  .phone.p1 { right: 120px; top: 0; z-index: 2; }
+  .phone.p2 { right: -10px; top: 70px; transform: rotate(6deg); opacity: .95; }
+
+  /* Sections */
+  section { padding: 90px 0; }
+  .section-head { text-align: center; max-width: 640px; margin: 0 auto 52px; }
+  .section-head h2 { font-size: clamp(28px, 4vw, 40px); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 14px; }
+  .section-head p { color: var(--muted); font-size: 18px; }
+
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 28px;
+  }
+  .icon {
+    width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; margin-bottom: 18px;
+    background: rgba(91,110,154,0.14); color: var(--slate);
+  }
+  .icon svg { width: 24px; height: 24px; }
+  .icon.amber { background: rgba(242,179,107,0.18); color: var(--amber-2); }
+  .icon.teal { background: rgba(111,163,160,0.18); color: var(--teal); }
+  .card h3 { font-size: 19px; margin-bottom: 8px; }
+  .card p { color: var(--muted); font-size: 15.5px; }
+
+  /* Screens */
+  .screens-bg { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .screens {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+  }
+  .screens figure { text-align: center; }
+  .screens .phone { position: static; width: 100%; max-width: 240px; margin: 0 auto; box-shadow: 0 18px 40px rgba(27,40,56,0.18), inset 0 0 0 2px #2B3B50; }
+  .screens figcaption { margin-top: 16px; font-weight: 600; font-size: 15px; }
+  .screens figcaption span { display: block; font-weight: 400; color: var(--muted); font-size: 14px; }
+
+  /* Pricing */
+  .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 0 auto; }
+  .plan { text-align: center; padding: 34px 28px; position: relative; }
+  .plan .name { font-weight: 600; color: var(--muted); font-size: 15px; text-transform: uppercase; letter-spacing: .06em; }
+  .plan .price { font-size: 40px; font-weight: 800; letter-spacing: -0.02em; margin: 10px 0 4px; }
+  .plan .per { color: var(--muted); font-size: 15px; }
+  .plan.best { border: 2px solid var(--amber); }
+  .badge {
+    position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+    background: var(--amber); color: var(--navy); font-size: 12px; font-weight: 700;
+    padding: 4px 12px; border-radius: 999px; white-space: nowrap;
+  }
+  .plans-note { text-align: center; color: var(--muted); font-size: 14px; margin-top: 22px; }
+
+  /* Support */
+  .support {
+    background: var(--navy); color: #fff; border-radius: 28px; padding: 56px 40px; text-align: center;
+    background-image: radial-gradient(600px 300px at 100% 0%, rgba(242,179,107,0.15), transparent 60%);
+  }
+  .support h2 { font-size: clamp(26px, 3.5vw, 36px); margin-bottom: 12px; }
+  .support p { color: #C9D3E3; max-width: 560px; margin: 0 auto 26px; font-size: 17px; }
+  .btn {
+    display: inline-block; background: var(--amber); color: var(--navy); text-decoration: none; font-weight: 700;
+    padding: 14px 26px; border-radius: 14px; transition: background .15s ease;
+  }
+  .btn:hover { background: #F6C489; }
+  .support .links { margin-top: 22px; font-size: 15px; color: #93A0B5; }
+  .support .links a { color: #C9D3E3; }
+
+  footer { padding: 36px 0 48px; color: var(--muted); font-size: 14px; }
+  .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; }
+  .foot nav { display: flex; flex-wrap: wrap; gap: 20px; }
+  .foot a { text-decoration: none; }
+  .foot a:hover { color: var(--text); }
+
+  /* Responsive */
+  @media (max-width: 920px) {
+    .hero-grid { grid-template-columns: 1fr; padding-top: 56px; padding-bottom: 0; text-align: center; }
+    .hero p.lead { margin-left: auto; margin-right: auto; }
+    .stores { justify-content: center; }
+    .phones { height: 430px; max-width: 420px; margin: 0 auto; width: 100%; }
+    .phone { width: 200px; border-radius: 32px; }
+    .phone img { border-radius: 24px; }
+    .phone.p1 { right: auto; left: 50%; transform: translateX(-70%); }
+    .phone.p2 { right: auto; left: 50%; transform: translateX(-10%) rotate(6deg); }
+    .features { grid-template-columns: 1fr 1fr; }
+    .screens { grid-template-columns: 1fr 1fr; gap: 36px 20px; }
+    .plans { grid-template-columns: 1fr; max-width: 380px; gap: 26px; }
+  }
+  @media (max-width: 600px) {
+    .nav-links a.hide-sm { display: none; }
+    section { padding: 64px 0; }
+    .features { grid-template-columns: 1fr; }
+    .support { padding: 44px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top"><img src="assets/icon-512.png" alt="">Blank2Bite</a>
+    <div class="nav-links">
+      <a class="hide-sm" href="#features" data-i18n="nav_features">Funzioni</a>
+      <a class="hide-sm" href="#pricing" data-i18n="nav_pricing">Prezzi</a>
+      <a class="hide-sm" href="#support" data-i18n="nav_support">Supporto</a>
+      <div class="lang" role="group" aria-label="Lingua / Language">
+        <button type="button" data-lang="it">IT</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<div class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="tagline" data-i18n="hero_tag">Dal cappotto all'abboccata</div>
+      <h1 data-i18n-html="hero_title">Il diario di pesca che <span>lavora per te</span></h1>
+      <p class="lead" data-i18n="hero_lead">Scatta una foto: Blank2Bite riconosce la specie con l'AI e salva posizione, meteo, luna e condizioni del mare. Scopri quando e dove abbocca di più.</p>
+      <div class="stores">
+        <a class="store soon" aria-disabled="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 1.8c-.3.3-.4.7-.4 1.3v17.8c0 .6.2 1 .4 1.3l.1.1 10-10v-.2l-10-10-.1-.3zm13.4 13.3-3.3-3.3v-.2l3.3-3.3.1.1 3.9 2.2c1.1.6 1.1 1.7 0 2.3l-3.9 2.2h-.1zm-.1.1-3.4-3.4-10 10c.4.4 1 .4 1.7.1l11.7-6.7m0-6.8L5.2 1.7c-.7-.4-1.3-.3-1.7.1l10 10 3.4-3.4z"/></svg>
+          <span><small data-i18n="soon">Presto su</small><strong>Google Play</strong></span>
+        </a>
+        <a class="store soon" aria-disabled="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.2 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3.1 2.4 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.6-1-2.7-3.9zM14 5.5c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.4z"/></svg>
+          <span><small data-i18n="soon">Presto su</small><strong>App Store</strong></span>
+        </a>
+      </div>
+      <p class="hero-note" data-i18n="hero_note">10 catture gratuite · Nessuna pubblicità</p>
+    </div>
+    <div class="phones" aria-hidden="true">
+      <div class="phone p1"><img src="assets/screens/screen-1.jpg" alt=""></div>
+      <div class="phone p2"><img src="assets/screens/screen-3.jpg" alt=""></div>
+    </div>
+  </div>
+</div>
+
+<section id="features">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 data-i18n="feat_title">Tutto quello che serve, in automatico</h2>
+      <p data-i18n="feat_lead">Tu pensi a pescare. A ricordare ogni dettaglio ci pensa Blank2Bite.</p>
+    </div>
+    <div class="features">
+      <div class="card">
+        <div class="icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></div>
+        <h3 data-i18n="f1_t">Riconoscimento AI</h3>
+        <p data-i18n="f1_d">Dalla foto l'intelligenza artificiale riconosce la specie, l'esca e stima la taglia. Se sbaglia, correggi con un tocco.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div>
+        <h3 data-i18n="f2_t">GPS e mappa</h3>
+        <p data-i18n="f2_d">Ogni cattura ha la sua posizione, presa dal telefono o dai dati della foto. Rivedi i tuoi spot su una mappa.</p>
+      </div>
+      <div class="card">
+        <div class="icon teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M2 17c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M17 3.5A4 4 0 1 0 20.5 8 3 3 0 0 1 17 3.5z"/></svg></div>
+        <h3 data-i18n="f3_t">Meteo, luna e mare</h3>
+        <p data-i18n="f3_d">Temperatura, vento, pressione, fase lunare, onde, temperatura dell'acqua e marea del momento esatto della cattura.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-7"/><path d="M22 20H2"/></svg></div>
+        <h3 data-i18n="f4_t">Statistiche</h3>
+        <p data-i18n="f4_d">Specie più catturate, esche più efficaci, orari e fasi lunari migliori: capisci cosa funziona davvero.</p>
+      </div>
+      <div class="card">
+        <div class="icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="M7 2h12a2 2 0 0 1 2 2v12"/><circle cx="8.5" cy="10" r="1.5"/><path d="M17 15l-4-4-7 8"/></svg></div>
+        <h3 data-i18n="f5_t">Importa le vecchie foto</h3>
+        <p data-i18n="f5_d">Hai già un archivio di catture? Importa tante foto insieme: data, posizione, meteo e specie vengono ricostruiti in automatico.</p>
+      </div>
+      <div class="card">
+        <div class="icon teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3 data-i18n="f6_t">Privato e sincronizzato</h3>
+        <p data-i18n="f6_d">Funziona anche offline e sincronizza i dati tra i tuoi dispositivi. Le foto restano sul telefono. Niente pubblicità, nessun dato venduto.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screens-bg">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 data-i18n="scr_title">Semplice da usare</h2>
+      <p data-i18n="scr_lead">Quattro schermate, tutto a portata di pollice.</p>
+    </div>
+    <div class="screens">
+      <figure>
+        <div class="phone"><img src="assets/screens/screen-1.jpg" alt="" loading="lazy"></div>
+        <figcaption><strong data-i18n="s1_t">Nuova cattura</strong><span data-i18n="s1_d">AI, meteo e luna</span></figcaption>
+      </figure>
+      <figure>
+        <div class="phone"><img src="assets/screens/screen-2.jpg" alt="" loading="lazy"></div>
+        <figcaption><strong data-i18n="s2_t">Storico</strong><span data-i18n="s2_d">Le catture mese per mese</span></figcaption>
+      </figure>
+      <figure>
+        <div class="phone"><img src="assets/screens/screen-3.jpg" alt="" loading="lazy"></div>
+        <figcaption><strong data-i18n="s3_t">Statistiche</strong><span data-i18n="s3_d">I tuoi hotspot sulla mappa</span></figcaption>
+      </figure>
+      <figure>
+        <div class="phone"><img src="assets/screens/screen-4.jpg" alt="" loading="lazy"></div>
+        <figcaption><strong data-i18n="s4_t">Analisi per esca</strong><span data-i18n="s4_d">Specie, luna e orari migliori</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 data-i18n="pr_title">Prova gratis, poi scegli tu</h2>
+      <p data-i18n="pr_lead">Le prime 10 catture sono gratuite. Per registrarne senza limiti c'è Premium.</p>
+    </div>
+    <div class="plans">
+      <div class="card plan">
+        <div class="name" data-i18n="p1_n">Gratis</div>
+        <div class="price">0 €</div>
+        <div class="per" data-i18n="p1_p">10 catture</div>
+      </div>
+      <div class="card plan">
+        <div class="name" data-i18n="p2_n">Mensile</div>
+        <div class="price">1,99 €</div>
+        <div class="per" data-i18n="p2_p">al mese</div>
+      </div>
+      <div class="card plan best">
+        <div class="badge" data-i18n="p3_b">Risparmi il 16%</div>
+        <div class="name" data-i18n="p3_n">Annuale</div>
+        <div class="price">19,99 €</div>
+        <div class="per" data-i18n="p3_p">all'anno</div>
+      </div>
+    </div>
+    <p class="plans-note" data-i18n="pr_note">Il prezzo finale, con le tasse del tuo Paese, è quello mostrato nello store. L’abbonamento si gestisce e si disdice dallo store del telefono.</p>
+  </div>
+</section>
+
+<section id="support" style="padding-top: 0;">
+  <div class="wrap">
+    <div class="support">
+      <h2 data-i18n="sup_title">Serve aiuto?</h2>
+      <p data-i18n="sup_lead">Domande, problemi o idee per migliorare l'app? Scrivici, rispondiamo a tutti.</p>
+      <a class="btn" href="mailto:blank2bite@gmail.com">blank2bite@gmail.com</a>
+      <div class="links">
+        <a href="delete-account.html" data-i18n="sup_delete">Come eliminare l'account</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>© <span id="year">2026</span> Blank2Bite</div>
+    <nav>
+      <a href="privacy-policy.html" data-i18n="ft_privacy">Privacy</a>
+      <a href="delete-account.html" data-i18n="ft_delete">Eliminazione account</a>
+      <a href="mailto:blank2bite@gmail.com" data-i18n="ft_contact">Contatti</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  const T = {
+    en: {
+      _title: "Blank2Bite – AI fishing journal",
+      nav_features: "Features", nav_pricing: "Pricing", nav_support: "Support",
+      hero_tag: "From blank to bite",
+      hero_title: "The fishing journal that <span>works for you</span>",
+      hero_lead: "Snap a photo: Blank2Bite identifies the species with AI and saves location, weather, moon and sea conditions. Find out when and where the fish bite.",
+      soon: "Coming soon on",
+      hero_note: "10 free catches · No ads",
+      feat_title: "Everything you need, automatically",
+      feat_lead: "You focus on fishing. Blank2Bite remembers every detail.",
+      f1_t: "AI identification", f1_d: "From your photo, AI recognizes the species and the lure and estimates the size. If it gets it wrong, fix it with a tap.",
+      f2_t: "GPS & map", f2_d: "Every catch gets its location, from your phone or from the photo's data. See all your spots on a map.",
+      f3_t: "Weather, moon & sea", f3_d: "Temperature, wind, pressure, moon phase, waves, water temperature and tide at the exact moment of the catch.",
+      f4_t: "Statistics", f4_d: "Most caught species, best lures, best times and moon phases: learn what really works.",
+      f5_t: "Import old photos", f5_d: "Already have a photo archive? Import many photos at once: date, location, weather and species are rebuilt automatically.",
+      f6_t: "Private & synced", f6_d: "Works offline and syncs your data across devices. Photos stay on your phone. No ads, no data selling.",
+      scr_title: "Simple to use", scr_lead: "Four screens, everything at your thumb.",
+      s1_t: "New catch", s1_d: "AI, weather and moon",
+      s2_t: "History", s2_d: "Your catches month by month",
+      s3_t: "Statistics", s3_d: "Your hotspots on the map",
+      s4_t: "Lure analysis", s4_d: "Best species, moon and times",
+      pr_title: "Try it free, then decide", pr_lead: "Your first 10 catches are free. For unlimited logging there's Premium.",
+      p1_n: "Free", p1_p: "10 catches",
+      p2_n: "Monthly", p2_p: "per month",
+      p3_b: "Save 16%", p3_n: "Yearly", p3_p: "per year",
+      pr_note: "The final price, including local taxes, is the one shown in the store. Manage or cancel your subscription from your phone’s app store.",
+      sup_title: "Need help?", sup_lead: "Questions, problems or ideas to improve the app? Write to us, we answer everyone.",
+      sup_delete: "How to delete your account",
+      ft_privacy: "Privacy", ft_delete: "Account deletion", ft_contact: "Contact"
+    }
+  };
+
+  // Il testo italiano è già nell'HTML: lo salvo per poter tornare indietro
+  T.it = { _title: document.title };
+  document.querySelectorAll("[data-i18n]").forEach(el => T.it[el.dataset.i18n] = el.textContent);
+  document.querySelectorAll("[data-i18n-html]").forEach(el => T.it[el.dataset.i18nHtml] = el.innerHTML);
+
+  function setLang(lang) {
+    const t = T[lang];
+    document.documentElement.lang = lang;
+    document.title = t._title;
+    document.querySelectorAll("[data-i18n]").forEach(el => el.textContent = t[el.dataset.i18n]);
+    document.querySelectorAll("[data-i18n-html]").forEach(el => el.innerHTML = t[el.dataset.i18nHtml]);
+    document.querySelectorAll(".lang button").forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
+    try { localStorage.setItem("lang", lang); } catch (e) {}
+  }
+
+  document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
+
+  let saved = null;
+  try { saved = localStorage.getItem("lang"); } catch (e) {}
+  const param = new URLSearchParams(location.search).get("lang");
+  const browser = (navigator.language || "it").toLowerCase().startsWith("it") ? "it" : "en";
+  setLang(T[param] ? param : (T[saved] ? saved : browser));
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
