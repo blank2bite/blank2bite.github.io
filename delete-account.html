@@ -106,6 +106,27 @@
             color: #a0aec0;
             font-size: 13px;
         }
+        /* Lingua: senza JavaScript si vede l'inglese (lang="en" sull'html) */
+        .lang {
+            display: inline-flex;
+            border: 1px solid #cbd5e0;
+            border-radius: 999px;
+            overflow: hidden;
+            margin-top: 16px;
+        }
+        .lang button {
+            background: none;
+            border: 0;
+            color: #4a5568;
+            font: inherit;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 5px 14px;
+            cursor: pointer;
+        }
+        .lang button.active { background: #1B2838; color: #ffffff; }
+        html[lang="en"] .l-it,
+        html[lang="it"] .l-en { display: none; }
         @media (max-width: 600px) {
             body { padding: 20px 16px; }
             .header h1 { font-size: 22px; }
@@ -115,9 +136,18 @@
 <body>
 
 <div class="header">
-    <h1>Account Deletion Request</h1>
-    <p class="subtitle">Blank2Bite - Fishing Journal App</p>
+    <h1><span class="l-en">Account Deletion Request</span><span class="l-it">Eliminazione dell'account</span></h1>
+    <p class="subtitle"><span class="l-en">Blank2Bite - Fishing Journal App</span><span class="l-it">Blank2Bite - App diario di pesca</span></p>
+    <div>
+        <div class="lang" role="group" aria-label="Language / Lingua">
+            <button type="button" data-lang="en">EN</button>
+            <button type="button" data-lang="it">IT</button>
+        </div>
+    </div>
 </div>
+
+<!-- ===================== ENGLISH ===================== -->
+<div class="l-en" lang="en">
 
 <h2>How to Delete Your Account</h2>
 <p>If you wish to delete your Blank2Bite account and all associated data, you can do it directly in the App or by email.</p>
@@ -126,9 +156,10 @@
 <h3 style="margin-bottom: 16px; color: #1B2838;">Delete your account in the App:</h3>
 <ol>
     <li>Open the Blank2Bite app and go to <strong>Settings</strong></li>
-    <li>Tap <strong>Delete account</strong> and confirm</li>
+    <li>Tap <strong>Delete account</strong>, confirm, and type the confirmation word (<strong>DELETE</strong>)</li>
     <li>Sign in again when asked (a security check), and your account is deleted immediately</li>
 </ol>
+<p>An Internet connection is required.</p>
 </div>
 
 <div class="steps">
@@ -151,7 +182,7 @@
 <ul>
     <li><strong>Account information</strong> &mdash; Your authentication credentials and email address</li>
     <li><strong>Catch records</strong> &mdash; All fishing catch data stored in the cloud (species, location, weather, dates)</li>
-    <li><strong>Cloud-synced data</strong> &mdash; All records stored in Google Cloud Firestore</li>
+    <li><strong>Cloud-synced data</strong> &mdash; All records stored in Google Cloud Firestore, including your subscription data</li>
     <li><strong>Data on the device</strong> &mdash; When you delete your account from the App, also the catch records and photo copies saved by the App on that device</li>
 </ul>
 <p>If you signed in with Apple, deleting your account also revokes the App's access to your Apple ID. Deleting your account does not cancel an active subscription: cancel it from your App Store or Google Play settings.</p>
@@ -180,9 +211,98 @@
     <p><a href="mailto:support@blank2bite.com">support@blank2bite.com</a></p>
 </div>
 
-<div class="footer">
-    <p>&copy; 2026 Blank2Bite. All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a></p>
 </div>
+
+<!-- ===================== ITALIANO ===================== -->
+<div class="l-it" lang="it">
+
+<h2>Come eliminare il tuo account</h2>
+<p>Se vuoi eliminare il tuo account Blank2Bite e tutti i dati collegati, puoi farlo direttamente dall'App oppure via email.</p>
+
+<div class="steps">
+<h3 style="margin-bottom: 16px; color: #1B2838;">Elimina l'account dall'App:</h3>
+<ol>
+    <li>Apri l'app Blank2Bite e vai in <strong>Impostazioni</strong></li>
+    <li>Tocca <strong>Elimina account</strong>, conferma e scrivi la parola di conferma (<strong>ELIMINA</strong>)</li>
+    <li>Quando richiesto, accedi di nuovo (è un controllo di sicurezza): l'account viene eliminato subito</li>
+</ol>
+<p>Serve una connessione a Internet.</p>
+</div>
+
+<div class="steps">
+<h3 style="margin-bottom: 16px; color: #1B2838;">Oppure chiedi l'eliminazione via email:</h3>
+<ol>
+    <li>Scrivi a <strong>support@blank2bite.com</strong> dall'indirizzo email collegato al tuo account</li>
+    <li>Come oggetto usa: <strong>"Richiesta di eliminazione account"</strong></li>
+    <li>Nel testo conferma che vuoi eliminare definitivamente l'account e tutti i dati collegati</li>
+    <li>Gestiremo la richiesta e ti confermeremo l'eliminazione entro <strong>7 giorni lavorativi</strong></li>
+</ol>
+</div>
+
+<div style="text-align: center; margin: 32px 0;">
+    <a href="mailto:support@blank2bite.com?subject=Richiesta%20di%20eliminazione%20account&body=Vorrei%20eliminare%20definitivamente%20il%20mio%20account%20Blank2Bite%20e%20tutti%20i%20dati%20collegati." class="btn">Chiedi l'eliminazione dell'account</a>
+</div>
+
+<h2>Quali dati vengono eliminati</h2>
+<div class="card">
+<p>Con l'eliminazione vengono <strong>cancellati definitivamente</strong>:</p>
+<ul>
+    <li><strong>Dati dell'account</strong> &mdash; le credenziali di accesso e l'indirizzo email</li>
+    <li><strong>Catture</strong> &mdash; tutte le catture salvate nel cloud (specie, posizione, meteo, date)</li>
+    <li><strong>Dati sincronizzati</strong> &mdash; tutti i dati salvati su Google Cloud Firestore, compresi quelli dell'abbonamento</li>
+    <li><strong>Dati sul telefono</strong> &mdash; se elimini l'account dall'App, anche le catture e le copie delle foto salvate dall'App su quel telefono</li>
+</ul>
+<p>Se hai effettuato l'accesso con Apple, l'eliminazione dell'account revoca anche l'accesso dell'App al tuo ID Apple. Eliminare l'account non disdice un abbonamento attivo: disdicilo dalle impostazioni dell'App Store o di Google Play.</p>
+</div>
+
+<div class="highlight">
+    <strong>Attenzione:</strong> le foto sono salvate solo sul tuo telefono e non nel cloud. Eliminare l'account non cancella le foto originali dalla galleria (compreso l'album &ldquo;Blank2Bite&rdquo;): puoi cancellarle tu dalla galleria.
+</div>
+
+<h2>Eliminare singole catture</h2>
+<p>Se vuoi eliminare solo alcune catture senza chiudere l'account, puoi farlo direttamente dall'App:</p>
+<div class="card">
+<ol>
+    <li>Apri l'app Blank2Bite</li>
+    <li>Vai nella scheda <strong>Storico</strong></li>
+    <li>Scorri o tocca l'icona di eliminazione sulla cattura da togliere</li>
+    <li>Conferma l'eliminazione</li>
+</ol>
+<p>Le catture eliminate vengono rimosse definitivamente sia dal telefono sia dal cloud.</p>
+</div>
+
+<h2>Contatti</h2>
+<p>Per qualsiasi domanda sull'eliminazione, scrivici:</p>
+<div class="contact-card">
+    <p style="font-size: 16px; color: #ffffff; margin-bottom: 8px;"><strong>Blank2Bite</strong></p>
+    <p><a href="mailto:support@blank2bite.com">support@blank2bite.com</a></p>
+</div>
+
+</div>
+
+<div class="footer">
+    <p>&copy; 2026 Blank2Bite. <span class="l-en">All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a></span><span class="l-it">Tutti i diritti riservati. | <a href="privacy-policy.html">Informativa sulla privacy</a></span></p>
+</div>
+
+<script>
+    // Stessa logica della home e della privacy policy: ?lang=, poi la scelta salvata, poi la lingua del browser
+    const TITLES = { en: "Delete Account - Blank2Bite", it: "Eliminazione dell'account - Blank2Bite" };
+
+    function setLang(lang) {
+        document.documentElement.lang = lang;
+        document.title = TITLES[lang];
+        document.querySelectorAll(".lang button").forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
+        try { localStorage.setItem("lang", lang); } catch (e) {}
+    }
+
+    document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
+
+    let saved = null;
+    try { saved = localStorage.getItem("lang"); } catch (e) {}
+    const param = new URLSearchParams(location.search).get("lang");
+    const browser = (navigator.language || "en").toLowerCase().startsWith("it") ? "it" : "en";
+    setLang(TITLES[param] ? param : (TITLES[saved] ? saved : browser));
+</script>
 
 </body>
 </html>
