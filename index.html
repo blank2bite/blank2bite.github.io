@@ -148,10 +148,11 @@
   .screens figcaption span { display: block; font-weight: 400; color: var(--muted); font-size: 14px; }
 
   /* Pricing */
-  .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 0 auto; }
+  .plans { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 620px; margin: 0 auto; }
   .plan { text-align: center; padding: 34px 28px; position: relative; }
   .plan .name { font-weight: 600; color: var(--muted); font-size: 15px; text-transform: uppercase; letter-spacing: .06em; }
   .plan .price { font-size: 40px; font-weight: 800; letter-spacing: -0.02em; margin: 10px 0 4px; }
+  .plan .price.text { font-size: 30px; line-height: 48px; }
   .plan .per { color: var(--muted); font-size: 15px; }
   .plan.best { border: 2px solid var(--amber); }
   .badge {
@@ -328,19 +329,13 @@
         <div class="price">0 €</div>
         <div class="per" data-i18n="p1_p">10 catture</div>
       </div>
-      <div class="card plan">
-        <div class="name" data-i18n="p2_n">Mensile</div>
-        <div class="price">1,99 €</div>
-        <div class="per" data-i18n="p2_p">al mese</div>
-      </div>
       <div class="card plan best">
-        <div class="badge" data-i18n="p3_b">Risparmi il 16%</div>
-        <div class="name" data-i18n="p3_n">Annuale</div>
-        <div class="price">19,99 €</div>
-        <div class="per" data-i18n="p3_p">all'anno</div>
+        <div class="name">Premium</div>
+        <div class="price text" data-i18n="p2_t">Senza limiti</div>
+        <div class="per" data-i18n="p2_p">abbonamento mensile o annuale</div>
       </div>
     </div>
-    <p class="plans-note" data-i18n="pr_note">Il prezzo finale, con le tasse del tuo Paese, è quello mostrato nello store. L’abbonamento si gestisce e si disdice dallo store del telefono.</p>
+    <p class="plans-note" data-i18n="pr_note">I prezzi di Premium, con le tasse del tuo Paese, sono indicati nell'app e nello store. L’abbonamento si gestisce e si disdice dallo store del telefono.</p>
   </div>
 </section>
 
@@ -395,9 +390,8 @@
       s4_t: "Species insights", s4_d: "Best baits, moon and times",
       pr_title: "Try it free, then decide", pr_lead: "Your first 10 catches are free. For unlimited logging there's Premium.",
       p1_n: "Free", p1_p: "10 catches",
-      p2_n: "Monthly", p2_p: "per month",
-      p3_b: "Save 16%", p3_n: "Yearly", p3_p: "per year",
-      pr_note: "The final price, including local taxes, is the one shown in the store. Manage or cancel your subscription from your phone’s app store.",
+      p2_t: "Unlimited", p2_p: "monthly or yearly subscription",
+      pr_note: "Premium prices, including your local taxes, are shown in the app and in the store. Manage or cancel your subscription from your phone’s app store.",
       sup_title: "Need help?", sup_lead: "Questions, problems or ideas to improve the app? Write to us, we answer everyone.",
       sup_delete: "How to delete your account",
       ft_privacy: "Privacy", ft_delete: "Account deletion", ft_contact: "Contact"
